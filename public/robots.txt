@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /seaofcats/
+
+Sitemap: https://nnfall.github.io/seaofcats/sitemap-index.xml

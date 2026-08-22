@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import About from '../components/sections/About.astro';
+import Cats from '../components/sections/Cats.astro';
+import Contact from '../components/sections/Contact.astro';
+import Hero from '../components/sections/Hero.astro';
+import Inside from '../components/sections/Inside.astro';
+import Reviews from '../components/sections/Reviews.astro';
+import Visit from '../components/sections/Visit.astro';
+import BrandMark from '../components/ui/BrandMark.astro';
+import MobileActions from '../components/ui/MobileActions.astro';
+import SiteNavigation from '../components/ui/SiteNavigation';
+import { business, links, seo } from '../data/site';
+import '../styles/global.css';
+---
+
+<BaseLayout title={seo.title} description={seo.description}>
+	<Fragment slot="header">
+		<SiteNavigation client:load />
+	</Fragment>
+
+	<div class="site-main">
+		<Hero />
+		<About />
+		<Cats />
+		<Inside />
+		<Visit />
+		<Reviews />
+		<Contact />
+	</div>
+
+	<Fragment slot="footer">
+		<footer class="site-footer">
+			<div class="site-footer__inner">
+				<div class="site-footer__brand">
+					<BrandMark compact />
+					<p>Тихое место, где можно побыть рядом с котиками.</p>
+				</div>
+				<div class="site-footer__links">
+					<a href={links.vk} target="_blank" rel="noreferrer">VK</a>
+					<a href={links.max} target="_blank" rel="noreferrer">MAX</a>
+					<a href={links.maps} target="_blank" rel="noreferrer">Яндекс Карты</a>
+				</div>
+				<div class="site-footer__meta">
+					<a href={business.phone.href}>{business.phone.display}</a>
+					<span>{business.address.display}</span>
+				</div>
+			</div>
+			<p class="site-footer__note">Фотографии заведения проверены по открытой галерее Яндекс Карт. Сгенерированная акварельная текстура используется только как фон.</p>
+			<div class="mobile-actions-spacer" aria-hidden="true"></div>
+		</footer>
+		<MobileActions />
+	</Fragment>
+
+	<script>
+		import '../scripts/reveal';
+	</script>
+</BaseLayout>
+
+<style>
+	.site-footer {
+		border-top: 1px solid var(--color-hairline);
+		padding: 3rem var(--page-gutter) 5.5rem;
+		color: var(--color-ink);
+		background: var(--color-paper);
+	}
+
+	.site-footer__inner {
+		display: grid;
+		grid-template-columns: minmax(0, 1.4fr) minmax(8rem, 0.7fr) minmax(12rem, 0.9fr);
+		gap: 2rem;
+		align-items: end;
+		width: min(100%, var(--container-max));
+		margin-inline: auto;
+	}
+
+	.site-footer__brand {
+		display: grid;
+		gap: 0.8rem;
+	}
+
+	.site-footer__brand p,
+	.site-footer__note {
+		max-width: 28rem;
+		margin: 0;
+		font-size: 0.82rem;
+		line-height: 1.55;
+	}
+
+	.site-footer__links,
+	.site-footer__meta {
+		display: grid;
+		gap: 0.55rem;
+		font-size: 0.82rem;
+		line-height: 1.4;
+	}
+
+	.site-footer a {
+		text-decoration-color: color-mix(in oklch, var(--color-coral) 62%, transparent);
+		text-underline-offset: 0.25em;
+	}
+
+	.site-footer a:hover {
+		color: var(--color-coral-hover);
+	}
+
+	.site-footer__meta {
+		justify-items: end;
+		text-align: right;
+	}
+
+	.site-footer__note {
+		width: min(100%, var(--container-max));
+		margin: 2.4rem auto 0;
+		color: var(--color-ink-muted);
+		font-size: 0.7rem;
+	}
+
+	@media (max-width: 48rem) {
+		.site-footer {
+			padding-bottom: 1.5rem;
+		}
+
+		.site-footer__inner {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+			gap: 1.8rem 1rem;
+		}
+
+		.site-footer__brand {
+			grid-column: 1 / -1;
+		}
+
+		.site-footer__meta {
+			justify-items: start;
+			text-align: left;
+		}
+	}
+
+	@media (max-width: 22rem) {
+		.site-footer__inner {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.site-footer__meta {
+			grid-column: 1;
+		}
+	}
+</style>

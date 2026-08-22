@@ -1,0 +1,341 @@
+---
+import { Image } from 'astro:assets';
+import interiorBench from '../../assets/images/venue/interior-bench.webp';
+---
+
+<section id="about" class="about section reveal" aria-labelledby="about-title">
+	<svg class="about__waves" viewBox="0 0 180 120" aria-hidden="true">
+		<path d="M4 21c28-27 55 27 83 0s55 27 84 0" />
+		<path d="M4 52c28-27 55 27 83 0s55 27 84 0" />
+		<path d="M4 83c28-27 55 27 83 0s55 27 84 0" />
+	</svg>
+
+	<div class="about__inner">
+		<figure class="about__media">
+			<div class="about__photo">
+				<Image
+					src={interiorBench}
+					alt="Белая скамья, полосатый стол и кошачьи мостики в интерьере котокафе"
+					widths={[560, 840, 1120, 1440]}
+					sizes="(max-width: 899px) 92vw, (max-width: 1400px) 52vw, 760px"
+					loading="lazy"
+					quality={86}
+				/>
+			</div>
+			<figcaption>
+				<svg viewBox="0 0 28 28" aria-hidden="true">
+					<path d="M4 17c4-5 8 5 12 0s8 5 12 0M6 11c3-4 6 4 9 0s6 4 9 0" />
+				</svg>
+				<span>Реальный интерьер на улице Дыбенко, 33А</span>
+			</figcaption>
+		</figure>
+
+		<div class="about__content">
+			<p class="about__eyebrow">О пространстве</p>
+			<h2 id="about-title">Место, где можно выдохнуть</h2>
+			<p class="about__lead">
+				«Море Котиков» работает в формате котокафе-антикафе. Сюда приходят
+				провести время рядом с котиками и ненадолго сменить городской ритм.
+			</p>
+
+			<dl class="about__facts">
+				<div>
+					<dt><span>01</span> Котокафе-антикафе</dt>
+					<dd>Главное здесь: время рядом с котиками в настоящем живом пространстве.</dd>
+				</div>
+				<div>
+					<dt><span>02</span> Реальный интерьер</dt>
+					<dd>На фотографиях именно кафе с кошачьими маршрутами и местами для отдыха.</dd>
+				</div>
+				<div>
+					<dt><span>03</span> План без сюрпризов</dt>
+					<dd>Актуальные условия лучше уточнить напрямую перед первым визитом.</dd>
+				</div>
+			</dl>
+		</div>
+	</div>
+
+	<svg class="about__branch" viewBox="0 0 104 172" aria-hidden="true">
+		<path d="M53 170c1-43-3-88 1-141M53 83 25 50M51 110 79 74M52 58 73 35M43 72 36 35M25 50 16 24M79 74 92 48M73 35 78 13M36 35 30 13" />
+		<circle cx="16" cy="22" r="3" /><circle cx="30" cy="11" r="3" />
+		<circle cx="78" cy="11" r="3" /><circle cx="93" cy="46" r="3" />
+	</svg>
+</section>
+
+<style>
+	.about {
+		position: relative;
+		padding-block: clamp(6rem, 10vw, 10.5rem);
+		color: var(--color-ink, oklch(0.36 0.09 242));
+		overflow: clip;
+		isolation: isolate;
+	}
+
+	.about::before {
+		position: absolute;
+		inset: 12% auto auto -13rem;
+		z-index: -1;
+		width: 34rem;
+		height: 34rem;
+		content: '';
+		border-radius: 50%;
+		background: color-mix(in oklch, var(--color-mist, oklch(0.91 0.025 235)) 42%, transparent);
+		filter: blur(4rem);
+		pointer-events: none;
+	}
+
+	.about__inner {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		grid-template-columns: minmax(0, 1.08fr) minmax(21rem, 0.88fr);
+		align-items: center;
+		gap: clamp(3.5rem, 7vw, 7.75rem);
+		width: min(
+			var(--container-max, 94rem),
+			calc(
+				100% - var(--page-gutter, clamp(1rem, 5vw, 5.5rem)) - var(--page-gutter, clamp(1rem, 5vw, 5.5rem))
+			)
+		);
+		margin-inline: auto;
+	}
+
+	.about__media {
+		min-width: 0;
+		margin: 0;
+	}
+
+	.about__photo {
+		aspect-ratio: 1.3 / 1;
+		overflow: hidden;
+		border-radius: 2rem 8rem 2rem 2rem;
+		background: var(--color-mist, oklch(0.91 0.025 235));
+	}
+
+	.about__photo :global(img) {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: 50% 63%;
+		transition: transform 760ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.about__media:hover .about__photo :global(img) {
+		transform: scale(1.018);
+	}
+
+	.about__media figcaption {
+		display: flex;
+		align-items: center;
+		gap: 0.9rem;
+		width: 88%;
+		min-height: 5.4rem;
+		margin: -0.4rem 0 0 auto;
+		padding: 1.15rem 1.6rem;
+		border: 1px solid color-mix(in oklch, var(--color-paper, oklch(0.965 0.012 82)) 55%, transparent);
+		border-radius: 0 0 1.6rem 1.6rem;
+		background: color-mix(in oklch, var(--color-mist, oklch(0.91 0.025 235)) 84%, var(--color-paper, oklch(0.965 0.012 82)));
+		color: var(--color-ink, oklch(0.36 0.09 242));
+		font: 500 clamp(0.9rem, 1.1vw, 1.05rem) / 1.4 var(--font-body, sans-serif);
+	}
+
+	.about__media figcaption svg {
+		width: 2rem;
+		height: 2rem;
+		flex: 0 0 auto;
+		fill: none;
+		stroke: var(--color-coral, oklch(0.66 0.145 39));
+		stroke-width: 1.5;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.about__content {
+		max-width: 41rem;
+	}
+
+	.about__eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.7rem;
+		margin: 0 0 1.45rem;
+		color: var(--color-coral, oklch(0.66 0.145 39));
+		font: 650 0.78rem / 1.2 var(--font-body, sans-serif);
+		letter-spacing: 0.19em;
+		text-transform: uppercase;
+	}
+
+	.about__eyebrow::before {
+		width: 2.35rem;
+		height: 1px;
+		content: '';
+		background: currentColor;
+	}
+
+	h2 {
+		max-width: 14ch;
+		margin: 0;
+		color: var(--color-ink-deep, oklch(0.285 0.083 241));
+		font-family: var(--font-display, serif);
+		font-size: clamp(2.65rem, 5vw, 5.25rem);
+		font-weight: 400;
+		line-height: 0.95;
+		letter-spacing: -0.025em;
+		text-wrap: balance;
+	}
+
+	.about__lead {
+		max-width: 37rem;
+		margin: clamp(1.5rem, 2.5vw, 2.25rem) 0 0;
+		color: var(--color-ink-muted, oklch(0.55 0.045 238));
+		font: 400 clamp(1rem, 1.2vw, 1.2rem) / 1.62 var(--font-body, sans-serif);
+	}
+
+	.about__facts {
+		margin: clamp(2.25rem, 4vw, 3.75rem) 0 0;
+	}
+
+	.about__facts > div {
+		display: grid;
+		grid-template-columns: minmax(10rem, 0.78fr) minmax(0, 1fr);
+		gap: 1.25rem;
+		padding-block: 1.25rem;
+		border-top: 1px solid var(--color-hairline, oklch(0.84 0.025 235));
+	}
+
+	.about__facts > div:last-child {
+		border-bottom: 1px solid var(--color-hairline, oklch(0.84 0.025 235));
+	}
+
+	.about__facts dt,
+	.about__facts dd {
+		margin: 0;
+	}
+
+	.about__facts dt {
+		color: var(--color-ink-deep, oklch(0.285 0.083 241));
+		font: 650 0.96rem / 1.45 var(--font-body, sans-serif);
+	}
+
+	.about__facts dt span {
+		display: inline-block;
+		min-width: 2.15rem;
+		color: var(--color-coral, oklch(0.66 0.145 39));
+		font-variant-numeric: tabular-nums;
+	}
+
+	.about__facts dd {
+		color: var(--color-ink-muted, oklch(0.55 0.045 238));
+		font: 400 0.94rem / 1.58 var(--font-body, sans-serif);
+	}
+
+	.about__waves,
+	.about__branch {
+		position: absolute;
+		z-index: 0;
+		fill: none;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		pointer-events: none;
+	}
+
+	.about__waves {
+		bottom: 9%;
+		left: -3.5rem;
+		width: clamp(8rem, 12vw, 12rem);
+		stroke: var(--color-hairline, oklch(0.84 0.025 235));
+		stroke-width: 1.45;
+	}
+
+	.about__branch {
+		top: 8%;
+		left: 47.5%;
+		width: clamp(4rem, 6vw, 6.25rem);
+		stroke: var(--color-coral, oklch(0.66 0.145 39));
+		stroke-width: 1.5;
+	}
+
+	@media (max-width: 899px) {
+		.about {
+			padding-block: clamp(5rem, 13vw, 7.5rem);
+		}
+
+		.about__inner {
+			grid-template-columns: minmax(0, 1fr);
+			gap: clamp(2.75rem, 8vw, 4.5rem);
+		}
+
+		.about__content {
+			order: -1;
+			max-width: 42rem;
+		}
+
+		.about__media {
+			width: min(100%, 42rem);
+			justify-self: center;
+		}
+
+		.about__branch {
+			top: 43%;
+			left: auto;
+			right: 3%;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.about__eyebrow {
+			margin-bottom: 1.15rem;
+		}
+
+		h2 {
+			max-width: 14ch;
+			font-size: clamp(2.55rem, 12vw, 3.15rem);
+		}
+
+		.about__lead {
+			margin-top: 1.35rem;
+			font-size: 1rem;
+		}
+
+		.about__facts {
+			margin-top: 2rem;
+		}
+
+		.about__facts > div {
+			grid-template-columns: 1fr;
+			gap: 0.4rem;
+			padding-block: 1.05rem;
+		}
+
+		.about__photo {
+			aspect-ratio: 0.94 / 1;
+			border-radius: 1.4rem 5rem 1.4rem 1.4rem;
+		}
+
+		.about__photo :global(img) {
+			object-position: 50% 61%;
+		}
+
+		.about__media figcaption {
+			width: 94%;
+			min-height: 4.5rem;
+			padding: 0.9rem 1rem;
+			font-size: 0.83rem;
+		}
+
+		.about__branch {
+			display: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.about__photo :global(img) {
+			transition: none;
+		}
+
+		.about__media:hover .about__photo :global(img) {
+			transform: none;
+		}
+	}
+</style>

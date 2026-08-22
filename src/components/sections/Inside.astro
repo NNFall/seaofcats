@@ -1,0 +1,472 @@
+---
+import { Image } from 'astro:assets';
+import teaStation from '../../assets/images/venue/tea-station.webp';
+import teaTable from '../../assets/images/venue/tea-table.webp';
+import { business } from '../../data/site';
+---
+
+<section id="inside" class="inside section reveal" aria-labelledby="inside-title">
+	<svg class="inside__birds" viewBox="0 0 112 54" aria-hidden="true">
+		<path d="M2 17c10-8 19-7 28 2 9-9 18-10 29-2" />
+		<path d="M58 40c7-6 14-5 21 2 7-7 14-8 22-2" />
+	</svg>
+
+	<svg class="inside__waves" viewBox="0 0 180 120" aria-hidden="true">
+		<path d="M4 21c28-27 55 27 83 0s55 27 84 0" />
+		<path d="M4 52c28-27 55 27 83 0s55 27 84 0" />
+		<path d="M4 83c28-27 55 27 83 0s55 27 84 0" />
+	</svg>
+
+	<div class="inside__inner">
+		<header class="inside__intro">
+			<p class="inside__eyebrow">Что внутри</p>
+			<h2 id="inside-title">Тёплый чай и спокойные вечера</h2>
+			<p>
+				Внутри есть чайная зона, небольшие угощения и настольные игры.
+				Можно выбрать занятие или просто побыть рядом с котиками.
+			</p>
+		</header>
+
+		<ul class="inside__amenities" aria-label="Что есть в котокафе">
+			<li>
+				<span class="inside__number">01</span>
+				<div><strong>Чай</strong><span>Тёплый напиток для спокойной паузы.</span></div>
+			</li>
+			<li>
+				<span class="inside__number">02</span>
+				<div><strong>Небольшие угощения</strong><span>Сладости дополняют чайную паузу.</span></div>
+			</li>
+			<li>
+				<span class="inside__number">03</span>
+				<div><strong>Настольные игры</strong><span>Для небольшой компании и неспешного вечера.</span></div>
+			</li>
+			<li>
+				<span class="inside__number">04</span>
+				<div><strong>Wi-Fi</strong><span>Можно оставаться на связи во время визита.</span></div>
+			</li>
+		</ul>
+
+		<a class="inside__action" href={business.phone.href}>
+			<svg viewBox="0 0 24 24" aria-hidden="true">
+				<path d="M7.1 3.8 9.7 8 7.9 9.9c1.2 2.7 3.4 4.9 6.1 6.1l1.9-1.8 4.2 2.6-.8 3c-.2.8-.9 1.3-1.7 1.3C9.5 20.5 3.5 14.5 2.9 6.4c-.1-.8.5-1.5 1.3-1.7l2.9-.9Z" />
+			</svg>
+			Уточнить перед визитом
+		</a>
+
+		<figure class="inside__media">
+			<div class="inside__main-photo">
+				<Image
+					src={teaStation}
+					alt="Чайная зона котокафе с кружками, чайником и небольшими угощениями"
+					widths={[480, 720, 960, 1200]}
+					sizes="(max-width: 899px) 88vw, (max-width: 1400px) 44vw, 640px"
+					loading="lazy"
+					quality={86}
+				/>
+			</div>
+			<div class="inside__detail-photo">
+				<Image
+					src={teaTable}
+					alt="Чайник и небольшие угощения на деревянном столе"
+					widths={[240, 360, 480, 640]}
+					sizes="(max-width: 899px) 32vw, 230px"
+					loading="lazy"
+					quality={86}
+				/>
+			</div>
+			<figcaption>Чайная зона в «Море Котиков»</figcaption>
+		</figure>
+	</div>
+
+	<svg class="inside__branch" viewBox="0 0 104 172" aria-hidden="true">
+		<path d="M53 170c1-43-3-88 1-141M53 83 25 50M51 110 79 74M52 58 73 35M43 72 36 35M25 50 16 24M79 74 92 48M73 35 78 13M36 35 30 13" />
+		<circle cx="16" cy="22" r="3" /><circle cx="30" cy="11" r="3" />
+		<circle cx="78" cy="11" r="3" /><circle cx="93" cy="46" r="3" />
+	</svg>
+</section>
+
+<style>
+	.inside {
+		position: relative;
+		padding-block: clamp(6rem, 10vw, 10.5rem);
+		border-block: 1px solid color-mix(in oklch, var(--color-hairline, oklch(0.84 0.025 235)) 58%, transparent);
+		color: var(--color-ink, oklch(0.36 0.09 242));
+		overflow: clip;
+		isolation: isolate;
+	}
+
+	.inside::before {
+		position: absolute;
+		inset: 0;
+		z-index: -2;
+		content: '';
+		background: linear-gradient(112deg, color-mix(in oklch, var(--color-paper-warm, oklch(0.93 0.028 73)) 46%, transparent), transparent 52%);
+		pointer-events: none;
+	}
+
+	.inside::after {
+		position: absolute;
+		inset: auto -10rem -15rem auto;
+		z-index: -1;
+		width: 34rem;
+		height: 34rem;
+		content: '';
+		border-radius: 50%;
+		background: color-mix(in oklch, var(--color-mist, oklch(0.91 0.025 235)) 56%, transparent);
+		filter: blur(3.5rem);
+		pointer-events: none;
+	}
+
+	.inside__inner {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		grid-template-columns: minmax(0, 1.02fr) minmax(27rem, 0.9fr);
+		grid-template-areas:
+			'intro media'
+			'amenities media'
+			'action media';
+		align-items: start;
+		gap: clamp(2rem, 3.5vw, 3.5rem) clamp(4rem, 7vw, 8rem);
+		width: min(
+			var(--container-max, 94rem),
+			calc(
+				100% - var(--page-gutter, clamp(1rem, 5vw, 5.5rem)) - var(--page-gutter, clamp(1rem, 5vw, 5.5rem))
+			)
+		);
+		margin-inline: auto;
+	}
+
+	.inside__intro {
+		grid-area: intro;
+		max-width: 43rem;
+		padding-top: clamp(0.5rem, 4vw, 4rem);
+	}
+
+	.inside__eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.7rem;
+		margin: 0 0 1.45rem;
+		color: var(--color-coral, oklch(0.66 0.145 39));
+		font: 650 0.78rem / 1.2 var(--font-body, sans-serif);
+		letter-spacing: 0.19em;
+		text-transform: uppercase;
+	}
+
+	.inside__eyebrow::before {
+		width: 2.35rem;
+		height: 1px;
+		content: '';
+		background: currentColor;
+	}
+
+	h2 {
+		max-width: 18ch;
+		margin: 0;
+		color: var(--color-ink-deep, oklch(0.285 0.083 241));
+		font-family: var(--font-display, serif);
+		font-size: clamp(2.65rem, 5vw, 5.25rem);
+		font-weight: 400;
+		line-height: 0.95;
+		letter-spacing: -0.025em;
+		text-wrap: balance;
+	}
+
+	.inside__intro > p:last-child {
+		max-width: 39rem;
+		margin: clamp(1.5rem, 2.5vw, 2.25rem) 0 0;
+		color: var(--color-ink-muted, oklch(0.55 0.045 238));
+		font: 400 clamp(1rem, 1.2vw, 1.2rem) / 1.62 var(--font-body, sans-serif);
+	}
+
+	.inside__amenities {
+		grid-area: amenities;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0 1.5rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.inside__amenities li {
+		display: grid;
+		grid-template-columns: 2.15rem minmax(0, 1fr);
+		gap: 0.7rem;
+		min-height: 7.6rem;
+		padding-block: 1.25rem;
+		border-top: 1px solid var(--color-hairline, oklch(0.84 0.025 235));
+	}
+
+	.inside__number {
+		color: var(--color-coral, oklch(0.66 0.145 39));
+		font: 650 0.78rem / 1.5 var(--font-body, sans-serif);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.inside__amenities div,
+	.inside__amenities strong,
+	.inside__amenities div span {
+		display: block;
+	}
+
+	.inside__amenities strong {
+		margin-bottom: 0.45rem;
+		color: var(--color-ink-deep, oklch(0.285 0.083 241));
+		font: 650 0.96rem / 1.4 var(--font-body, sans-serif);
+	}
+
+	.inside__amenities div span {
+		color: var(--color-ink-muted, oklch(0.55 0.045 238));
+		font: 400 0.9rem / 1.55 var(--font-body, sans-serif);
+	}
+
+	.inside__action {
+		grid-area: action;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		justify-self: start;
+		gap: 0.75rem;
+		min-height: 3.5rem;
+		padding-inline: 1.65rem;
+		border-radius: 999px;
+		background: var(--color-coral, oklch(0.66 0.145 39));
+		color: var(--color-paper, oklch(0.965 0.012 82));
+		font: 650 0.98rem / 1 var(--font-body, sans-serif);
+		text-decoration: none;
+		transition:
+			background-color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+			transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.inside__action:hover {
+		background: var(--color-coral-hover, oklch(0.6 0.16 36));
+	}
+
+	.inside__action:active {
+		transform: translateY(1px) scale(0.985);
+	}
+
+	.inside__action:focus-visible {
+		outline: 3px solid var(--color-coral, oklch(0.66 0.145 39));
+		outline-offset: 4px;
+	}
+
+	.inside__action svg {
+		width: 1.35rem;
+		height: 1.35rem;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.7;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.inside__media {
+		position: relative;
+		grid-area: media;
+		align-self: center;
+		min-width: 0;
+		margin: 0;
+		padding: 0 0 2.8rem 2rem;
+	}
+
+	.inside__main-photo {
+		aspect-ratio: 620 / 741;
+		overflow: hidden;
+		border-radius: 2rem;
+		background: var(--color-mist, oklch(0.91 0.025 235));
+	}
+
+	.inside__main-photo :global(img),
+	.inside__detail-photo :global(img) {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 760ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.inside__main-photo :global(img) {
+		object-position: 50% 19%;
+	}
+
+	.inside__detail-photo {
+		position: absolute;
+		bottom: 1.6rem;
+		left: -1.25rem;
+		width: min(36%, 14rem);
+		aspect-ratio: 0.56 / 1;
+		overflow: hidden;
+		border: 0.55rem solid var(--color-paper, oklch(0.965 0.012 82));
+		border-radius: 7rem 7rem 1.25rem 1.25rem;
+		background: var(--color-paper, oklch(0.965 0.012 82));
+	}
+
+	.inside__detail-photo :global(img) {
+		object-position: 14% 50%;
+	}
+
+	.inside__media:hover .inside__main-photo :global(img) {
+		transform: scale(1.016);
+	}
+
+	.inside__media figcaption {
+		position: absolute;
+		right: 1.5rem;
+		bottom: 0;
+		max-width: 72%;
+		padding: 0.9rem 1.25rem;
+		border: 1px solid color-mix(in oklch, var(--color-paper, oklch(0.965 0.012 82)) 58%, transparent);
+		border-radius: 999px;
+		background: color-mix(in oklch, var(--color-mist, oklch(0.91 0.025 235)) 86%, var(--color-paper, oklch(0.965 0.012 82)));
+		color: var(--color-ink, oklch(0.36 0.09 242));
+		font: 500 clamp(0.82rem, 1vw, 0.98rem) / 1.35 var(--font-body, sans-serif);
+		text-align: center;
+	}
+
+	.inside__birds,
+	.inside__waves,
+	.inside__branch {
+		position: absolute;
+		z-index: 0;
+		fill: none;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		pointer-events: none;
+	}
+
+	.inside__birds {
+		top: 14%;
+		left: 45.5%;
+		width: clamp(5rem, 7vw, 7rem);
+		stroke: var(--color-ink, oklch(0.36 0.09 242));
+		stroke-width: 2.3;
+	}
+
+	.inside__waves {
+		top: 21%;
+		right: -2.5rem;
+		width: clamp(8rem, 12vw, 12rem);
+		stroke: var(--color-hairline, oklch(0.84 0.025 235));
+		stroke-width: 1.45;
+	}
+
+	.inside__branch {
+		top: 48%;
+		left: 48%;
+		width: clamp(4rem, 6vw, 6.25rem);
+		stroke: var(--color-coral, oklch(0.66 0.145 39));
+		stroke-width: 1.5;
+	}
+
+	@media (max-width: 899px) {
+		.inside {
+			padding-block: clamp(5rem, 13vw, 7.5rem);
+		}
+
+		.inside__inner {
+			grid-template-columns: minmax(0, 1fr);
+			grid-template-areas:
+				'intro'
+				'media'
+				'amenities'
+				'action';
+			gap: clamp(2.5rem, 7vw, 4rem);
+		}
+
+		.inside__intro {
+			max-width: 42rem;
+			padding-top: 0;
+		}
+
+		.inside__media {
+			width: min(100%, 38rem);
+			justify-self: center;
+		}
+
+		.inside__birds {
+			top: 34%;
+			left: auto;
+			right: 6%;
+		}
+
+		.inside__branch {
+			top: 46%;
+			left: 2%;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.inside__eyebrow {
+			margin-bottom: 1.15rem;
+		}
+
+		h2 {
+			font-size: clamp(2.55rem, 12vw, 3.15rem);
+		}
+
+		.inside__intro > p:last-child {
+			margin-top: 1.35rem;
+			font-size: 1rem;
+		}
+
+		.inside__media {
+			width: 100%;
+			padding: 0 0 2.25rem 1rem;
+		}
+
+		.inside__main-photo {
+			border-radius: 1.4rem;
+		}
+
+		.inside__detail-photo {
+			bottom: 1.2rem;
+			left: -0.25rem;
+			width: 34%;
+			border-width: 0.35rem;
+			border-radius: 5rem 5rem 0.9rem 0.9rem;
+		}
+
+		.inside__media figcaption {
+			right: 0;
+			max-width: 70%;
+			padding: 0.75rem 0.85rem;
+			font-size: 0.78rem;
+		}
+
+		.inside__amenities {
+			grid-template-columns: 1fr;
+			gap: 0;
+		}
+
+		.inside__amenities li {
+			min-height: auto;
+			padding-block: 1rem;
+		}
+
+		.inside__action {
+			justify-self: stretch;
+			min-height: 3.25rem;
+		}
+
+		.inside__birds,
+		.inside__branch {
+			display: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.inside__main-photo :global(img),
+		.inside__detail-photo :global(img),
+		.inside__action {
+			transition: none;
+		}
+
+		.inside__media:hover .inside__main-photo :global(img) {
+			transform: none;
+		}
+	}
+</style>

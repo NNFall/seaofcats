@@ -1,0 +1,141 @@
+---
+interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
+	href: string;
+	variant?: 'primary' | 'secondary' | 'text';
+	size?: 'default' | 'compact';
+}
+
+const {
+	href,
+	variant = 'primary',
+	size = 'default',
+	class: className,
+	target,
+	rel,
+	...attributes
+} = Astro.props;
+
+const safeRel = target === '_blank'
+	? Array.from(new Set([...(rel?.split(/\s+/) ?? []), 'noopener', 'noreferrer'])).join(' ')
+	: rel;
+---
+
+<a
+	class:list={[
+		'button-link',
+		`button-link--${variant}`,
+		{ 'button-link--compact': size === 'compact' },
+		className,
+	]}
+	href={href}
+	target={target}
+	rel={safeRel}
+	{...attributes}
+>
+	{Astro.slots.has('icon') && (
+		<span class="button-link__icon" aria-hidden="true"><slot name="icon" /></span>
+	)}
+	<span class="button-link__label"><slot /></span>
+	{Astro.slots.has('after') && (
+		<span class="button-link__icon" aria-hidden="true"><slot name="after" /></span>
+	)}
+</a>
+
+<style>
+	.button-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.65rem;
+		min-block-size: 3.5rem;
+		padding-inline: 1.5rem;
+		border: 1px solid transparent;
+		border-radius: 999px;
+		font-family: var(--font-body, Manrope, Arial, sans-serif);
+		font-size: 0.95rem;
+		font-weight: 750;
+		line-height: 1.2;
+		text-align: center;
+		text-decoration: none;
+		transition:
+			background-color 180ms ease,
+			border-color 180ms ease,
+			color 180ms ease;
+	}
+
+	.button-link--primary {
+		background: var(--color-coral, oklch(0.66 0.145 39));
+		color: var(--color-ink-deep, oklch(0.285 0.083 241));
+	}
+
+	.button-link--primary:hover {
+		background: var(--color-coral-hover, oklch(0.6 0.16 36));
+	}
+
+	.button-link--secondary {
+		border-color: var(--color-ink, oklch(0.36 0.09 242));
+		background: transparent;
+		color: var(--color-ink, oklch(0.36 0.09 242));
+	}
+
+	.button-link--secondary:hover {
+		background: var(--color-ink, oklch(0.36 0.09 242));
+		color: var(--color-paper, oklch(0.965 0.012 82));
+	}
+
+	.button-link--text {
+		min-block-size: 2.75rem;
+		padding-inline: 0.25rem;
+		border-radius: 0.4rem;
+		color: var(--color-ink, oklch(0.36 0.09 242));
+		text-decoration: underline;
+		text-decoration-color: var(--color-coral, oklch(0.66 0.145 39));
+		text-decoration-thickness: 2px;
+		text-underline-offset: 0.28em;
+	}
+
+	.button-link--text:hover {
+		color: var(--color-ink-deep, oklch(0.285 0.083 241));
+		text-decoration-thickness: 3px;
+	}
+
+	.button-link--compact {
+		min-block-size: 3rem;
+		padding-inline: 1.15rem;
+	}
+
+	.button-link:focus-visible {
+		outline: 3px solid var(--color-coral, oklch(0.66 0.145 39));
+		outline-offset: 4px;
+	}
+
+	.button-link__icon {
+		display: inline-grid;
+		place-items: center;
+		inline-size: 1.2em;
+		block-size: 1.2em;
+		flex: none;
+	}
+
+	.button-link__icon :global(svg) {
+		inline-size: 100%;
+		block-size: 100%;
+	}
+
+	@media (max-width: 40rem) {
+		.button-link {
+			min-block-size: 3rem;
+			padding-inline: 1.25rem;
+		}
+
+		.button-link--text {
+			min-block-size: 2.75rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.button-link {
+			transition: none;
+		}
+	}
+</style>

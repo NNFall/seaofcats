@@ -1,0 +1,409 @@
+---
+import { Image } from 'astro:assets';
+
+import shell from '../../assets/images/brand/shell.png';
+import catBlackWhite from '../../assets/images/venue/cat-black-white.webp';
+import catBridge from '../../assets/images/venue/cat-bridge.webp';
+import catChair from '../../assets/images/venue/cat-chair.webp';
+import catHouse from '../../assets/images/venue/cat-house.webp';
+import catWindow from '../../assets/images/venue/cat-window.webp';
+import sleepingCat from '../../assets/images/venue/sleeping-cat.webp';
+import CatRail from '../ui/CatRail';
+
+const items = [
+  {
+    src: catBlackWhite.src,
+    width: catBlackWhite.width,
+    height: catBlackWhite.height,
+    alt: 'Чёрно-белый кот с зелёными глазами смотрит прямо в камеру',
+    caption: 'Любопытство — прямо перед объективом.',
+  },
+  {
+    src: catWindow.src,
+    width: catWindow.width,
+    height: catWindow.height,
+    alt: 'Полосатый кот лежит в красной лежанке у большого окна',
+    caption: 'Тихое место у окна и неспешный взгляд на улицу.',
+  },
+  {
+    src: catHouse.src,
+    width: catHouse.width,
+    height: catHouse.height,
+    alt: 'Полосатый кот выглядывает из мягкого домика с кошачьими ушками',
+    caption: 'Укрытие, из которого удобно наблюдать за залом.',
+  },
+  {
+    src: catChair.src,
+    width: catChair.width,
+    height: catChair.height,
+    alt: 'Бело-серый кот сидит на стуле рядом со столом и книжным стеллажом',
+    caption: 'Пауза на стуле рядом с книгами и общим столом.',
+  },
+  {
+    src: catBridge.src,
+    width: catBridge.width,
+    height: catBridge.height,
+    alt: 'Полосатый кот сидит на подвесном деревянном мостике под потолком',
+    caption: 'Подвесной мостик продолжает пространство под потолком.',
+  },
+  {
+    src: sleepingCat.src,
+    width: sleepingCat.width,
+    height: sleepingCat.height,
+    alt: 'Полосатый кот дремлет в мягком желтом кресле',
+    caption: 'Солнечный свет, мягкое кресло и тихий час.',
+  },
+] as const;
+---
+
+<section class="cats" id="cats" aria-labelledby="cats-title">
+  <svg class="cats__waves" viewBox="0 0 230 96" aria-hidden="true">
+    <path d="M4 18c26-21 51-21 77 0s51 21 77 0 46-21 68-3" />
+    <path d="M4 42c26-21 51-21 77 0s51 21 77 0 46-21 68-3" />
+    <path d="M4 66c26-21 51-21 77 0s51 21 77 0 46-21 68-3" />
+  </svg>
+
+  <svg class="cats__branch" viewBox="0 0 116 168" aria-hidden="true">
+    <path d="M57 164c2-33 1-72-6-112M55 130c-14-13-25-28-34-46M53 110c15-13 27-30 35-50M50 88C38 75 31 62 26 45M54 70c12-12 20-25 24-40M48 54C40 43 35 32 33 20" />
+    <path d="M21 84c-5-1-9 1-11 6 6 2 10 0 11-6ZM88 60c6-1 10 2 12 7-6 2-10-1-12-7ZM26 45c-5-2-9 0-12 4 5 3 10 1 12-4ZM78 30c5-1 9 2 10 7-5 1-9-1-10-7ZM33 20c-4-2-8-1-11 3 4 3 8 2 11-3Z" />
+  </svg>
+
+  <Image class="cats__shell" src={shell} alt="" aria-hidden="true" />
+
+  <svg class="cats__birds" viewBox="0 0 132 58" aria-hidden="true">
+    <path d="M4 18c8-7 16-7 24 0 8-7 16-7 24 0M72 37c6-5 12-5 18 0 6-5 12-5 18 0M104 14c4-4 9-4 14 0 4-4 8-4 12 0" />
+  </svg>
+
+  <div class="cats__inner">
+    <header class="cats__header">
+      <div class="cats__heading">
+        <p class="cats__eyebrow">
+          <svg class="cats__eyebrow-mark" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 20.2 4.4 12.9C.2 8.8 6.3 2.4 12 7.8c5.7-5.4 11.8 1 7.6 5.1L12 20.2Z" />
+          </svg>
+          Наши котики
+        </p>
+        <h2 id="cats-title">Познакомьтесь<br /> с пушистыми жителями</h2>
+        <p class="cats__intro">
+          Кто-то подходит знакомиться сразу, кто-то наблюдает с мостиков или выбирает
+          тихий уголок. Листайте реальные кадры из котокафе.
+        </p>
+      </div>
+
+      <aside class="cats__note" aria-label="О знакомстве с котиками">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="10" r="3.5" />
+          <path d="M24 14v25M16 20h16M13 31c2 6 5.7 9 11 9s9-3 11-9M10 31h6M32 31h6" />
+        </svg>
+        <div>
+          <strong>Знакомство — в своём темпе</strong>
+          <p>В кадре котики отдыхают, наблюдают и сами выбирают дистанцию.</p>
+        </div>
+      </aside>
+    </header>
+
+    <CatRail items={items} client:load />
+
+    <div class="cats__footer">
+      <a class="cats__action" href="#visit">Подготовиться к визиту</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cats {
+    --cats-paper: var(--color-paper, oklch(0.965 0.012 82));
+    --cats-paper-warm: var(--color-paper-warm, oklch(0.93 0.028 73));
+    --cats-mist: var(--color-mist, oklch(0.91 0.025 235));
+    --cats-ink: var(--color-ink, oklch(0.36 0.09 242));
+    --cats-ink-deep: var(--color-ink-deep, oklch(0.285 0.083 241));
+    --cats-muted: var(--color-ink-muted, oklch(0.55 0.045 238));
+    --cats-coral: var(--color-coral, oklch(0.66 0.145 39));
+    --cats-coral-hover: var(--color-coral-hover, oklch(0.6 0.16 36));
+    --cats-hairline: var(--color-hairline, oklch(0.84 0.025 235));
+    --cats-gutter: var(--page-gutter, 1rem);
+    position: relative;
+    isolation: isolate;
+    padding-block: clamp(3.5rem, 3.5vw, 4rem) clamp(1.75rem, 2vw, 2rem);
+    overflow: clip;
+    color: var(--cats-ink);
+    scroll-margin-top: 5.5rem;
+  }
+
+  .cats::before {
+    position: absolute;
+    z-index: -1;
+    right: -10%;
+    bottom: -20%;
+    width: min(62rem, 72vw);
+    aspect-ratio: 1.75;
+    content: '';
+    background: color-mix(in oklch, var(--cats-mist) 45%, transparent);
+    border-radius: 56% 44% 0 0 / 76% 62% 0 0;
+    transform: rotate(-3deg);
+  }
+
+  .cats__waves {
+    position: absolute;
+    z-index: 0;
+    top: clamp(2.75rem, 6vw, 6rem);
+    right: clamp(-5.5rem, -2vw, -1rem);
+    width: clamp(9rem, 16vw, 14.5rem);
+    color: var(--cats-hairline);
+    opacity: 0.78;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-width: 1.5;
+  }
+
+  .cats__branch,
+  .cats__birds {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .cats__branch {
+    top: clamp(6rem, 7.2vw, 7.5rem);
+    left: 55.5%;
+    width: clamp(5.5rem, 7vw, 7.25rem);
+    color: var(--cats-coral);
+    opacity: 0.72;
+    stroke: currentColor;
+    stroke-width: 1.35;
+  }
+
+  .cats__shell {
+    position: absolute;
+    z-index: 0;
+    bottom: clamp(1.25rem, 2vw, 2rem);
+    left: clamp(2rem, 9vw, 9.5rem);
+    width: clamp(3.5rem, 4.5vw, 5rem);
+    height: auto;
+    pointer-events: none;
+    opacity: 0.82;
+  }
+
+  .cats__birds {
+    right: clamp(1.5rem, 4vw, 4.25rem);
+    bottom: clamp(1.5rem, 3vw, 3rem);
+    width: clamp(6rem, 8vw, 8.25rem);
+    color: var(--cats-ink);
+    opacity: 0.86;
+    stroke: currentColor;
+    stroke-width: 1.7;
+  }
+
+  .cats__inner {
+    position: relative;
+    z-index: 1;
+    width: calc(100% - var(--cats-gutter) - var(--cats-gutter));
+    max-width: var(--container-max, 94rem);
+    margin-inline: auto;
+  }
+
+  .cats__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(18rem, 0.75fr);
+    gap: clamp(2.5rem, 6vw, 7rem);
+    align-items: center;
+    margin-bottom: clamp(1.5rem, 1.5vw, 1.75rem);
+  }
+
+  .cats__heading {
+    max-width: 51rem;
+  }
+
+  .cats__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-height: 2.75rem;
+    margin: 0 0 1rem;
+    padding: 0.55rem 1.1rem;
+    color: var(--cats-muted);
+    border: 1px solid var(--cats-hairline);
+    border-radius: 999px;
+    font-family: var(--font-body, Manrope, sans-serif);
+    font-size: 0.92rem;
+  }
+
+  .cats__eyebrow-mark {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.6;
+  }
+
+  .cats h2 {
+    max-width: 51rem;
+    margin: 0;
+    color: var(--cats-ink-deep);
+    font-family: var(--font-display, Oranienbaum, serif);
+    font-size: clamp(3.15rem, 4.75vw, 4.75rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  .cats__intro {
+    max-width: 44rem;
+    margin: 1rem 0 0;
+    color: var(--cats-muted);
+    font-family: var(--font-body, Manrope, sans-serif);
+    font-size: clamp(1rem, 1.1vw, 1.125rem);
+    line-height: 1.55;
+  }
+
+  .cats__note {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1.15rem;
+    align-items: start;
+    padding: clamp(1.35rem, 2.2vw, 2rem);
+    background: var(--cats-paper);
+    border: 1px solid var(--cats-hairline);
+    border-radius: 2rem;
+  }
+
+  .cats__note > svg {
+    width: 2.4rem;
+    color: var(--cats-coral);
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  .cats__note strong {
+    display: block;
+    color: var(--cats-ink-deep);
+    font-family: var(--font-display, Oranienbaum, serif);
+    font-size: clamp(1.2rem, 1.5vw, 1.45rem);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .cats__note p {
+    margin: 0.55rem 0 0;
+    color: var(--cats-muted);
+    font-family: var(--font-body, Manrope, sans-serif);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .cats__footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.75rem;
+  }
+
+  .cats__action {
+    display: inline-flex;
+    min-height: 3.5rem;
+    padding: 0.8rem 1.8rem;
+    align-items: center;
+    justify-content: center;
+    color: var(--cats-paper);
+    background: var(--cats-coral);
+    border-radius: 999px;
+    font-family: var(--font-body, Manrope, sans-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+      background-color 220ms ease,
+      transform 220ms ease;
+  }
+
+  .cats__action:hover {
+    background: var(--cats-coral-hover);
+  }
+
+  .cats__action:active {
+    transform: translateY(1px);
+  }
+
+  .cats__action:focus-visible {
+    outline: 3px solid color-mix(in oklch, var(--cats-coral) 70%, var(--cats-paper));
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 47.999rem) {
+    .cats {
+      padding-block: clamp(4.5rem, 12vw, 5.5rem);
+    }
+
+    .cats__header {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .cats h2 {
+      font-size: clamp(2.5rem, 12vw, 3rem);
+    }
+
+    .cats__note {
+      padding: 1.25rem;
+      border-radius: 1.5rem;
+    }
+
+    .cats__waves {
+      top: 2rem;
+      right: -4.5rem;
+      opacity: 0.55;
+    }
+
+    .cats__branch {
+      display: none;
+    }
+
+    .cats__shell {
+      left: 1rem;
+      bottom: 1rem;
+      opacity: 0.42;
+    }
+
+    .cats__birds {
+      right: 0.5rem;
+      bottom: 1.25rem;
+      opacity: 0.46;
+    }
+
+    .cats__action {
+      width: min(100%, 22rem);
+    }
+  }
+
+  @media (min-width: 60rem) {
+    .cats {
+      scroll-margin-top: 7.5rem;
+    }
+  }
+
+  @media (min-width: 80rem) {
+    .cats {
+      scroll-margin-top: 10.375rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cats__action {
+      transition: none;
+    }
+
+    .cats__action:active {
+      transform: none;
+    }
+  }
+</style>

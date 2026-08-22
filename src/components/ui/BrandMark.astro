@@ -1,0 +1,104 @@
+---
+interface Props {
+	href?: string;
+	class?: string;
+	compact?: boolean;
+	ariaLabel?: string;
+}
+
+import mascot from '../../assets/images/brand/mascot.png';
+
+const {
+	href,
+	class: className,
+	compact = false,
+	ariaLabel = href ? 'Море Котиков — на главную' : undefined,
+} = Astro.props;
+---
+
+{
+	href ? (
+		<a
+			class:list={['brand-mark', { 'brand-mark--compact': compact }, className]}
+			href={href}
+			aria-label={ariaLabel}
+		>
+			<img class="brand-mark__glyph" src={mascot.src} width={mascot.width} height={mascot.height} alt="" aria-hidden="true" />
+			<span class="brand-mark__copy">
+				<span class="brand-mark__name">Море Котиков</span>
+				{!compact && <span class="brand-mark__descriptor">котокафе-антикафе</span>}
+			</span>
+		</a>
+	) : (
+		<span
+			class:list={['brand-mark', { 'brand-mark--compact': compact }, className]}
+			aria-label={ariaLabel}
+		>
+			<img class="brand-mark__glyph" src={mascot.src} width={mascot.width} height={mascot.height} alt="" aria-hidden="true" />
+			<span class="brand-mark__copy">
+				<span class="brand-mark__name">Море Котиков</span>
+				{!compact && <span class="brand-mark__descriptor">котокафе-антикафе</span>}
+			</span>
+		</span>
+	)
+}
+
+<style>
+	.brand-mark {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.7rem;
+		min-block-size: 2.75rem;
+		color: var(--color-ink-deep, oklch(0.285 0.083 241));
+		text-decoration: none;
+	}
+
+	a.brand-mark:focus-visible {
+		border-radius: 0.5rem;
+		outline: 3px solid var(--color-coral, oklch(0.66 0.145 39));
+		outline-offset: 4px;
+	}
+
+	.brand-mark__glyph {
+		inline-size: 3rem;
+		block-size: 3rem;
+		flex: none;
+		object-fit: contain;
+	}
+
+	.brand-mark__copy {
+		display: grid;
+		gap: 0.05rem;
+	}
+
+	.brand-mark__name {
+		font-family: var(--font-display, Oranienbaum, Georgia, serif);
+		font-size: 1.45rem;
+		line-height: 0.95;
+		white-space: nowrap;
+	}
+
+	.brand-mark__descriptor {
+		font-family: var(--font-body, Manrope, Arial, sans-serif);
+		font-size: 0.62rem;
+		font-weight: 650;
+		letter-spacing: 0.11em;
+		line-height: 1.2;
+		text-transform: uppercase;
+	}
+
+	.brand-mark--compact .brand-mark__glyph {
+		inline-size: 2.6rem;
+		block-size: 2.6rem;
+	}
+
+	@media (max-width: 26rem) {
+		.brand-mark__glyph {
+			inline-size: 2.55rem;
+		}
+
+		.brand-mark__name {
+			font-size: 1.25rem;
+		}
+	}
+</style>
